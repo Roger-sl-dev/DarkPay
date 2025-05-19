@@ -1,0 +1,430 @@
+name: Cupons
+description: |-
+
+  APIs para gerenciamento de cupons de desconto.
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/cupons
+    metadata:
+      groupName: Cupons
+      groupDescription: |-
+
+        APIs para gerenciamento de cupons de desconto.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Listar cupons'
+      description: 'Retorna uma lista paginada de cupons cadastrados.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "current_page": 1,
+            "data": [
+              {
+                "id": 1,
+                "codigo": "DESCONTO10",
+                "tipo": "percentual",
+                "valor": 10,
+                "ativo": true,
+                "validade": "2025-12-31",
+                ...
+              }
+            ],
+            "last_page": 1,
+            ...
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/cupons
+    metadata:
+      groupName: Cupons
+      groupDescription: |-
+
+        APIs para gerenciamento de cupons de desconto.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Criar um novo cupom'
+      description: 'Registra um novo cupom de desconto.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      codigo:
+        name: codigo
+        description: 'Código único do cupom.'
+        required: true
+        example: DESCONTO10
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      descricao:
+        name: descricao
+        description: 'Descrição do cupom.'
+        required: false
+        example: '10% de desconto em toda a loja'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      tipo:
+        name: tipo
+        description: 'Tipo do cupom: percentual ou valor_fixo.'
+        required: true
+        example: percentual
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      valor:
+        name: valor
+        description: 'Valor do desconto.'
+        required: true
+        example: 10.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      ativo:
+        name: ativo
+        description: 'Define se o cupom está ativo.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      validade:
+        name: validade
+        description: 'Data de validade do cupom.'
+        required: false
+        example: '2025-12-31'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      codigo: DESCONTO10
+      descricao: '10% de desconto em toda a loja'
+      tipo: percentual
+      valor: 10.0
+      ativo: true
+      validade: '2025-12-31'
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "id": 1,
+            "codigo": "DESCONTO10",
+            "tipo": "percentual",
+            "valor": 10,
+            "ativo": true,
+            ...
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/cupons/{id}'
+    metadata:
+      groupName: Cupons
+      groupDescription: |-
+
+        APIs para gerenciamento de cupons de desconto.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mostrar cupom'
+      description: 'Retorna os dados de um cupom específico.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the cupon.'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cupom:
+        name: cupom
+        description: 'ID do cupom.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 17
+      cupom: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "codigo": "DESCONTO10",
+            "tipo": "percentual",
+            "valor": 10,
+            ...
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/cupons/{id}'
+    metadata:
+      groupName: Cupons
+      groupDescription: |-
+
+        APIs para gerenciamento de cupons de desconto.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Atualizar cupom'
+      description: 'Atualiza os dados de um cupom existente.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the cupon.'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cupom:
+        name: cupom
+        description: 'ID do cupom.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 17
+      cupom: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      codigo:
+        name: codigo
+        description: 'Código do cupom.'
+        required: false
+        example: DESCONTO20
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      descricao:
+        name: descricao
+        description: 'Descrição do cupom.'
+        required: false
+        example: '20% de desconto'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      tipo:
+        name: tipo
+        description: 'Tipo do cupom.'
+        required: false
+        example: percentual
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      valor:
+        name: valor
+        description: 'Valor do desconto.'
+        required: false
+        example: 20.0
+        type: number
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      ativo:
+        name: ativo
+        description: 'Define se o cupom está ativo.'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      validade:
+        name: validade
+        description: 'Data de validade.'
+        required: false
+        example: '2025-12-31'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+    cleanBodyParameters:
+      codigo: DESCONTO20
+      descricao: '20% de desconto'
+      tipo: percentual
+      valor: 20.0
+      ativo: false
+      validade: '2025-12-31'
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "codigo": "DESCONTO20",
+            ...
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/cupons/{id}'
+    metadata:
+      groupName: Cupons
+      groupDescription: |-
+
+        APIs para gerenciamento de cupons de desconto.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Deletar cupom'
+      description: 'Remove um cupom existente do sistema.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the cupon.'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      cupom:
+        name: cupom
+        description: 'ID do cupom.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 17
+      cupom: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 204
+        content: '{}'
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

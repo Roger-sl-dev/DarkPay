@@ -1,0 +1,236 @@
+name: Pagamentos
+description: |-
+
+  Gerenciamento de transações com Stripe.
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/transactions
+    metadata:
+      groupName: Pagamentos
+      groupDescription: |-
+
+        Gerenciamento de transações com Stripe.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Listar transações.'
+      description: 'Retorna a lista de transações ordenadas pela mais recente.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+            {
+              "id": 1,
+              "stripe_id": "pi_1234567890",
+              "amount": 49.9,
+              "currency": "brl",
+              "status": "succeeded",
+              "description": "Pagamento de produto X",
+              "payment_method": "card",
+              "created_at": "2025-05-08T12:00:00Z",
+              "updated_at": "2025-05-08T12:00:00Z"
+            }
+          ]
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/transactions
+    metadata:
+      groupName: Pagamentos
+      groupDescription: |-
+
+        Gerenciamento de transações com Stripe.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Criar uma nova transação.'
+      description: |-
+        Cria uma transação com Stripe usando os dados fornecidos. Retorna o `client_secret`
+        para completar o pagamento no frontend. Se o método de pagamento for `pix`,
+        retorna também o QR Code.
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      amount:
+        name: amount
+        description: 'Valor da transação. Exemplo: 49.90'
+        required: true
+        example: 11613.31890586
+        type: number
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      currency:
+        name: currency
+        description: 'Moeda no formato ISO 4217 (3 letras). Exemplo: BRL'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      payment_method_type:
+        name: payment_method_type
+        description: 'Tipo de pagamento. Valores possíveis: card, pix. Exemplo: pix'
+        required: true
+        example: consequatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'Descrição da transação. Exemplo: Pagamento de produto X'
+        required: false
+        example: 'Dolores dolorum amet iste laborum eius est dolor.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      metadata:
+        name: metadata
+        description: 'Informações adicionais em forma de chave/valor. Exemplo: {"pedido_id": "123"}'
+        required: false
+        example: []
+        type: object
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      amount: 11613.31890586
+      currency: consequatur
+      payment_method_type: consequatur
+      description: 'Dolores dolorum amet iste laborum eius est dolor.'
+      metadata: []
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "transaction": {
+              "id": 1,
+              "stripe_id": "pi_1234567890",
+              "amount": 49.9,
+              "currency": "brl",
+              "status": "requires_payment_method",
+              "description": "Pagamento de produto X",
+              "payment_method": "pix",
+              "created_at": "2025-05-08T12:00:00Z",
+              "updated_at": "2025-05-08T12:00:00Z"
+            },
+            "client_secret": "pi_1234567890_secret_abc123",
+            "pix_qr_code": "data:image/png;base64,..."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 500
+        content: |-
+          {
+            "error": "Erro ao criar transação."
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/transactions/{id}'
+    metadata:
+      groupName: Pagamentos
+      groupDescription: |-
+
+        Gerenciamento de transações com Stripe.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Exibir uma transação específica.'
+      description: 'Retorna os detalhes de uma transação pelo ID.'
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da transação. Exemplo: 1'
+        required: true
+        example: 17
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      id: 17
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "stripe_id": "pi_1234567890",
+            "amount": 49.9,
+            "currency": "brl",
+            "status": "succeeded",
+            "description": "Pagamento de produto X",
+            "payment_method": "card",
+            "created_at": "2025-05-08T12:00:00Z",
+            "updated_at": "2025-05-08T12:00:00Z"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
